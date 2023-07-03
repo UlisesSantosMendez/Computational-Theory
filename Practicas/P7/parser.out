@@ -1,0 +1,249 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> S
+Rule 1     S -> X
+Rule 2     S -> Y
+Rule 3     empty -> <empty>
+Rule 4     X -> Z T
+Rule 5     Z -> a Z b
+Rule 6     Z -> empty
+Rule 7     T -> c T
+Rule 8     T -> empty
+Rule 9     Y -> F W
+Rule 10    W -> b W c
+Rule 11    W -> empty
+Rule 12    F -> a F
+Rule 13    F -> empty
+
+Terminals, with rules where they appear
+
+a                    : 5 12
+b                    : 5 10
+c                    : 7 10
+error                : 
+
+Nonterminals, with rules where they appear
+
+F                    : 9 12
+S                    : 0
+T                    : 4 7
+W                    : 9 10
+X                    : 1
+Y                    : 2
+Z                    : 4 5
+empty                : 6 8 11 13
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . S
+    (1) S -> . X
+    (2) S -> . Y
+    (4) X -> . Z T
+    (9) Y -> . F W
+    (5) Z -> . a Z b
+    (6) Z -> . empty
+    (12) F -> . a F
+    (13) F -> . empty
+    (3) empty -> .
+
+    a               shift and go to state 6
+    c               reduce using rule 3 (empty -> .)
+    $end            reduce using rule 3 (empty -> .)
+    b               reduce using rule 3 (empty -> .)
+
+    S                              shift and go to state 1
+    X                              shift and go to state 2
+    Y                              shift and go to state 3
+    Z                              shift and go to state 4
+    F                              shift and go to state 5
+    empty                          shift and go to state 7
+
+state 1
+
+    (0) S' -> S .
+
+
+
+state 2
+
+    (1) S -> X .
+
+    $end            reduce using rule 1 (S -> X .)
+
+
+state 3
+
+    (2) S -> Y .
+
+    $end            reduce using rule 2 (S -> Y .)
+
+
+state 4
+
+    (4) X -> Z . T
+    (7) T -> . c T
+    (8) T -> . empty
+    (3) empty -> .
+
+    c               shift and go to state 9
+    $end            reduce using rule 3 (empty -> .)
+
+    T                              shift and go to state 8
+    empty                          shift and go to state 10
+
+state 5
+
+    (9) Y -> F . W
+    (10) W -> . b W c
+    (11) W -> . empty
+    (3) empty -> .
+
+    b               shift and go to state 12
+    $end            reduce using rule 3 (empty -> .)
+
+    W                              shift and go to state 11
+    empty                          shift and go to state 13
+
+state 6
+
+    (5) Z -> a . Z b
+    (12) F -> a . F
+    (5) Z -> . a Z b
+    (6) Z -> . empty
+    (12) F -> . a F
+    (13) F -> . empty
+    (3) empty -> .
+
+    a               shift and go to state 6
+    b               reduce using rule 3 (empty -> .)
+    $end            reduce using rule 3 (empty -> .)
+
+    Z                              shift and go to state 14
+    F                              shift and go to state 15
+    empty                          shift and go to state 7
+
+state 7
+
+    (6) Z -> empty .
+    (13) F -> empty .
+
+  ! reduce/reduce conflict for b resolved using rule 6 (Z -> empty .)
+  ! reduce/reduce conflict for $end resolved using rule 6 (Z -> empty .)
+    c               reduce using rule 6 (Z -> empty .)
+    $end            reduce using rule 6 (Z -> empty .)
+    b               reduce using rule 6 (Z -> empty .)
+
+  ! b               [ reduce using rule 13 (F -> empty .) ]
+  ! $end            [ reduce using rule 13 (F -> empty .) ]
+
+
+state 8
+
+    (4) X -> Z T .
+
+    $end            reduce using rule 4 (X -> Z T .)
+
+
+state 9
+
+    (7) T -> c . T
+    (7) T -> . c T
+    (8) T -> . empty
+    (3) empty -> .
+
+    c               shift and go to state 9
+    $end            reduce using rule 3 (empty -> .)
+
+    T                              shift and go to state 16
+    empty                          shift and go to state 10
+
+state 10
+
+    (8) T -> empty .
+
+    $end            reduce using rule 8 (T -> empty .)
+
+
+state 11
+
+    (9) Y -> F W .
+
+    $end            reduce using rule 9 (Y -> F W .)
+
+
+state 12
+
+    (10) W -> b . W c
+    (10) W -> . b W c
+    (11) W -> . empty
+    (3) empty -> .
+
+    b               shift and go to state 12
+    c               reduce using rule 3 (empty -> .)
+
+    W                              shift and go to state 17
+    empty                          shift and go to state 13
+
+state 13
+
+    (11) W -> empty .
+
+    $end            reduce using rule 11 (W -> empty .)
+    c               reduce using rule 11 (W -> empty .)
+
+
+state 14
+
+    (5) Z -> a Z . b
+
+    b               shift and go to state 18
+
+
+state 15
+
+    (12) F -> a F .
+
+    b               reduce using rule 12 (F -> a F .)
+    $end            reduce using rule 12 (F -> a F .)
+
+
+state 16
+
+    (7) T -> c T .
+
+    $end            reduce using rule 7 (T -> c T .)
+
+
+state 17
+
+    (10) W -> b W . c
+
+    c               shift and go to state 19
+
+
+state 18
+
+    (5) Z -> a Z b .
+
+    c               reduce using rule 5 (Z -> a Z b .)
+    $end            reduce using rule 5 (Z -> a Z b .)
+    b               reduce using rule 5 (Z -> a Z b .)
+
+
+state 19
+
+    (10) W -> b W c .
+
+    $end            reduce using rule 10 (W -> b W c .)
+    c               reduce using rule 10 (W -> b W c .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: reduce/reduce conflict in state 7 resolved using rule (Z -> empty)
+WARNING: rejected rule (F -> empty) in state 7
+WARNING: Rule (F -> empty) is never reduced
